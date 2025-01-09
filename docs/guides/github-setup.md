@@ -211,4 +211,24 @@ After setting up GitHub integration:
 For more details, see:
 - [Repository Analysis Guide](./repository-analysis.md)
 - [Design System Configuration](./design-system-config.md)
-- [Token Management](./token-management.md) 
+- [Token Management](./token-management.md)
+
+## Branch Protection Settings
+
+### Main Branch Protection
+The `main` branch is protected with the following settings:
+- Require pull request reviews before merging
+- Require status checks to pass before merging
+- Include administrators in these restrictions
+
+### Template Branch
+The `template` branch is used for development and testing:
+- No signature verification required
+- Direct pushes allowed
+- Used for initial development and documentation
+
+### Workflow
+1. Development work is done on the `template` branch
+2. Changes are tested and reviewed locally
+3. Pull requests are created to merge changes into `main`
+4. Reviews are required before merging to `main` 
