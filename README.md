@@ -222,7 +222,14 @@ pnpm docs:watch     # Watch mode
 
 ## Contributing
 
-Contributions welcome! Please read our [Contributing Guide](CONTRIBUTING.md).
+When submitting pull requests, please:
+
+1. Create a descriptive branch name (e.g., `feature/new-component`, `fix/button-styles`)
+2. Follow the pull request template
+3. Ensure all checks pass
+4. Request review from maintainers
+
+For more detailed contribution guidelines, see our documentation.
 
 ## License
 
