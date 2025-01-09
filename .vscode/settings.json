@@ -1,0 +1,23 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+"typescript.tsdk": "node_modules/typescript/lib",
+"terminal.integrated.sendKeybindingsToShell": true,
+"cursor.composer.collapsePaneInputBoxPills": true,
+"cursor.composer.renderPillsInsteadOfBlocks": true,
+"cursor.composer.autoRunCommands": true,
+"window.autoDetectColorScheme": false,
+"terminal.integrated.shellIntegration.enabled": true
+} 

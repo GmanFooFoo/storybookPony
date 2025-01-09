@@ -1,0 +1,22 @@
+Set-Location -Path "C:\Users\rauhutg\Github-Repositories\storybookPony-main"
+
+# Create directories using PowerShell syntax
+New-Item -Path "src\components","src\pages","src\utils","src\services","src\types","src\hooks","src\styles","src\tests" -ItemType Directory -Force
+New-Item -Path "src\components\common","src\components\layout" -ItemType Directory -Force
+New-Item -Path "src\services\github","src\services\parser","src\services\analysis" -ItemType Directory -Force
+New-Item -Path "prisma\migrations" -ItemType Directory -Force
+New-Item -Path ".github\workflows" -ItemType Directory -Force
+
+Clear-Host  # PowerShell's clear screen command
+
+# Install dependencies
+node --version
+npm --version
+npx prisma generate
+npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-react eslint-plugin-react-hooks
+npm run lint
+npm run format
+npm install --save-dev husky lint-staged
+npx husky install
+npm pkg set scripts.prepare="husky install"
+npx husky add .husky/pre-commit "npx lint-staged"

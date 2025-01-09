@@ -1,0 +1,37 @@
+name: Documentation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'prisma/**'
+      - 'docs/**'
+      - '**.md'
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Generate Prisma Types
+        run: npm run prisma:generate
+        
+      - name: Generate API docs
+        run: npx typedoc --out docs/api src/
+        
+      - name: Update README badges
+        run: |
+          npx markdown-magic
+          git add .
+          git commit -m "docs: update documentation" || echo "No changes to commit"
+          git push 

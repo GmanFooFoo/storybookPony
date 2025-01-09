@@ -1,0 +1,76 @@
+{
+  "name": "storybook-pony",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint:fix": "eslint --fix .",
+    "type-check": "tsc --noEmit",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "prisma:studio": "prisma studio",
+    "docs": "typedoc && npx markdown-magic --config markdown.config.js docs/**/*.md",
+    "docs:watch": "nodemon --watch src --ext ts,tsx --exec \"npm run docs\""
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "^2.7.4",
+    "@prisma/client": "^5.22.0",
+    "@radix-ui/react-icons": "^1.x",
+    "@radix-ui/react-slot": "^1.1.1",
+    "@supabase/supabase-js": "^2.x",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.344.0",
+    "next": "14.x",
+    "next-auth": "^4.x",
+    "react": "^18.x",
+    "react-dom": "^18.x",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.x"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.x",
+    "@testing-library/react": "^14.x",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.x",
+    "@types/react": "^18.x",
+    "@types/react-dom": "^18.x",
+    "@typescript-eslint/eslint-plugin": "^6.x",
+    "@typescript-eslint/parser": "^6.x",
+    "autoprefixer": "^10.x",
+    "eslint": "^8.x",
+    "eslint-config-next": "14.x",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.x",
+    "husky": "^9.x",
+    "jest": "^29.x",
+    "jest-environment-jsdom": "^29.x",
+    "lint-staged": "^15.x",
+    "markdown-magic": "^3.3.0",
+    "nodemon": "^3.1.9",
+    "postcss": "^8.x",
+    "prettier": "^3.x",
+    "prettier-plugin-tailwindcss": "^0.5.x",
+    "prisma": "^5.22.0",
+    "tailwindcss": "^3.x"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "license": "MIT"
+}
