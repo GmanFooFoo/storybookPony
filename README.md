@@ -4,7 +4,80 @@
 
 ## Overview
 
-Storybook Pony is a tool that automatically generates and manages design system documentation by analyzing codebases. This helps development teams maintain visual consistency across projects and improve collaboration between designers and developers.
+Storybook Pony is an advanced design system documentation automation tool that bridges the gap between code and design documentation. It automatically analyzes your codebase to extract, document, and maintain design system information, ensuring your documentation stays synchronized with your actual implementation.
+
+### Key Features
+
+- **Automated Analysis**
+  - Real-time code scanning and analysis
+  - Design token extraction and validation
+  - Component pattern recognition
+  - Usage tracking and statistics
+
+- **Documentation Generation**
+  - Automated documentation from code
+  - Interactive component previews
+  - Token visualization and usage examples
+  - Relationship mapping between components
+
+- **GitHub Integration**
+  - OAuth-based authentication
+  - Repository access and analysis
+  - Automated updates via webhooks
+  - PR checks and documentation updates
+
+- **Design System Management**
+  - Token management and validation
+  - Component organization and categorization
+  - Version control and change tracking
+  - Team collaboration tools
+
+### Benefits
+
+- **For Developers**
+  - Reduced documentation overhead
+  - Automated consistency checks
+  - Clear component usage guidelines
+  - Integration with existing workflows
+
+- **For Designers**
+  - Live design token documentation
+  - Component usage insights
+  - Implementation status tracking
+  - Design-to-code validation
+
+- **For Teams**
+  - Single source of truth
+  - Improved collaboration
+  - Automated maintenance
+  - Quality assurance tools
+
+## Documentation
+
+Comprehensive documentation is available in the `/docs` directory:
+
+### Getting Started
+- [Introduction](docs/introduction.md) - Overview and core concepts
+- [Quick Start Guide](docs/quick-start.md) - Get up and running quickly
+- [Installation Guide](docs/installation.md) - Detailed installation steps
+
+### Configuration Guides
+- [GitHub Setup](docs/guides/github-setup.md) - Configure GitHub integration
+- [Token Configuration](docs/config/tokens.md) - Set up design tokens
+- [Component Rules](docs/config/components.md) - Configure component guidelines
+- [Analysis Settings](docs/config/analysis.md) - Configure analysis behavior
+
+### Best Practices
+- [Token Management](docs/best-practices/tokens.md) - Token organization and usage
+- [Component Development](docs/best-practices/components.md) - Component creation guidelines
+- [Documentation](docs/best-practices/documentation.md) - Documentation maintenance
+
+### Advanced Topics
+- [Performance Guide](docs/advanced/performance.md) - Optimization techniques
+- [Security Best Practices](docs/advanced/security.md) - Security guidelines
+- [Custom Integrations](docs/advanced/integrations.md) - Extend functionality
+
+For API documentation and additional resources, visit our [Documentation Portal](https://docs.storybookpony.dev).
 
 ## Quick Start
 
@@ -12,20 +85,25 @@ Storybook Pony is a tool that automatically generates and manages design system 
    - Node.js 18+
    - PostgreSQL (via Supabase)
    - GitHub Account
+   - pnpm (recommended) or npm
 
 2. **Setup**
    ```bash
    # Clone and install
-   git clone https://github.com/your-username/storybookPony.git
+   git clone https://github.com/GmanFooFoo/storybookPony.git
    cd storybookPony
-   npm install
+   pnpm install
 
    # Configure environment
    cp .env.example .env
    # Edit .env with your credentials
 
+   # Initialize database
+   pnpm prisma generate
+   pnpm prisma db push
+
    # Start development
-   npm run dev
+   pnpm dev
    ```
 
 3. **Configure GitHub OAuth**
@@ -39,49 +117,107 @@ Storybook Pony is a tool that automatically generates and manages design system 
 ```
 src/
 ├── app/                      # Next.js App Router
-│   ├── (auth)/              # Auth routes
-│   ├── (dashboard)/         # Protected dashboard
+│   ├── (auth)/              # Auth routes & components
+│   │   └── auth/            # Authentication pages
+│   ├── (dashboard)/         # Protected dashboard routes
 │   ├── api/                 # API routes
+│   │   └── auth/           # NextAuth configuration
 │   └── layout.tsx           # Root layout
 ├── components/              # Shared components
-└── lib/                     # Utilities
+│   ├── common/             # Common UI components
+│   ├── providers/          # React context providers
+│   ├── ui/                 # Shadcn UI components
+│   └── layout/             # Layout components
+├── lib/                     # Utilities
+│   ├── auth/               # Auth utilities
+│   ├── db.ts               # Database client
+│   └── utils.ts            # Helper functions
+├── hooks/                   # Custom React hooks
+├── services/               # External service integrations
+├── styles/                 # Global styles
+├── tests/                  # Test utilities
+├── types/                  # TypeScript types
+└── utils/                  # Utility functions
 ```
 
 ## Features
 
-- **Repository Access**
-  - GitHub OAuth integration
-  - Single branch analysis
-  - Secure authentication
+- **Authentication**
+  - NextAuth.js integration with GitHub
+  - Protected routes and API endpoints
+  - Session management
 
-- **Code Analysis**
-  - Extract design tokens
-  - Analyze Tailwind configs
-  - Identify components
+- **Database Schema**
+  - User management
+  - Design system storage
+  - Token management
+  - Component tracking
 
 - **Design System Tools**
-  - Modern web interface
-  - System definition
-  - Import/Export
+  - Modern web interface with Shadcn UI
+  - System definition and management
+  - Token type support:
+    - Colors
+    - Typography
+    - Spacing
+    - Shadows
+    - Borders
+    - Breakpoints
+    - Z-indices
 
 ## Tech Stack
 
-- **Frontend:** Next.js 14, React 18, TypeScript, Tailwind CSS, Shadcn UI
-- **Backend:** Next.js API Routes, Prisma ORM, Supabase
-- **Auth:** NextAuth.js with GitHub provider
-- **Tools:** ESLint, Prettier, Jest, Zod
+- **Frontend:** 
+  - Next.js 14 with App Router
+  - React 18
+  - TypeScript 5
+  - Tailwind CSS 3
+  - Shadcn UI
+  - Radix UI Primitives
+
+- **Backend:** 
+  - Next.js API Routes
+  - Prisma ORM
+  - PostgreSQL (Supabase)
+  - NextAuth.js 4
+
+- **Development Tools:**
+  - ESLint & Prettier
+  - Jest & React Testing Library
+  - TypeDoc
+  - Husky & lint-staged
+  - pnpm
 
 ## Development
 
 ```bash
 # Start development server
-npm run dev
+pnpm dev
 
 # Run tests
-npm test
+pnpm test
+pnpm test:watch
 
-# Build for production
-npm run build
+# Type checking
+pnpm type-check
+
+# Linting
+pnpm lint
+pnpm lint:fix
+
+# Format code
+pnpm format
+
+# Generate Prisma client
+pnpm prisma:generate
+
+# Database management
+pnpm prisma:push    # Push schema changes
+pnpm prisma:studio  # Database GUI
+
+# Documentation
+pnpm docs           # Generate docs
+pnpm docs:watch     # Watch mode
 ```
 
 ## Contributing
@@ -90,4 +226,4 @@ Contributions welcome! Please read our [Contributing Guide](CONTRIBUTING.md).
 
 ## License
 
-MIT License - See [LICENSE](LICENSE) file for details
+GPL-3.0 License - See [LICENSE](LICENSE) file for details
